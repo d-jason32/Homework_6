@@ -5,13 +5,34 @@
 #include <thread>
 #include <mutex>
 
+std::mutex lock;
+int shared_variable;
+
+// Function to write the shared variable
+void *write(void *arg){
+    // Lock the thread
+    lock.lock();
+    // Write the variable
+    shared_variable = 5;
+    // Unlock the thread
+    lock.unlock();
+    return NULL;
+}
+
+void *read(void *arg){
+    // Lock the thread
+    lock.lock();
+    // Read and print the data.
+    printf("The data: %d\n", shared_variable);
+    // Unlock the thread
+    lock.unlock();
+    return NULL;
+}
+
+
 int main() {
     pthread_t thread_1;
     pthread_t thread_2;
-
-    std::mutex lock;
-
-    int shared_variable = 5;
 
     return 0;
 }
