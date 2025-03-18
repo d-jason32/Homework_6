@@ -6,7 +6,12 @@
 #include <mutex>
 
 int main() {
-    pthread_t Thread_1;
-    pthread_t Thread_2;
+    pthread_t thread_1;
+    pthread_t thread_2;
+
+    std::mutex lock;
+
+    int shared_variable = 5;
+
     return 0;
 }
